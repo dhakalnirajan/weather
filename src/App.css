@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.head-title {
+  font-family: 'Montserrat', sans-serif;
+  color: rgb(2, 26, 73);
+  font-size: 44px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.container {
+  /* CSS properties here */
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  word-spacing: 1px;
+  font-weight: 600;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: underline;
+  padding: 0px 5px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 20px 0px 0px 0px;
+}
+
+.lead {
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.lead-2 {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  text-align: justify;
+}
+
+
+.instruction {
+  margin-top: 20px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+
+.app-description {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 0px 20px 5px 5px;
+  max-width: 1000px;
+}
+
+.app-description p {
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: justify;
+}
+
+
+.app-logo {
+  height: 50px;
+  margin-left: 20px;
+}
+
+.content {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.weather-info {
+  padding: 15px;
+  border-radius: 8px;
+  color: rgb(5, 28, 74);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.422);
+  max-width: 500px;
+  min-height: 200px;
+  margin: auto;
+  margin-top: 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.input-group {
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.custom-input {
+  height: 50px;
+  width: 900px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
