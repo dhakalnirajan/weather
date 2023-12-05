@@ -14,7 +14,10 @@ const Footer = () => {
           <a className="footer-link" href="https://dhakalnirajan.github.io">
             Nirajan Dhakal
           </a>
-          &nbsp; |  &nbsp; Powered by {' '}
+          &nbsp; |  Inspired by {' '}
+          <a className="footer-link" href="https://github.com/meedikshya">
+            Dikshya Sharma
+          </a> &nbsp; | &nbsp; Powered by {' '}
           <Github size={20} color="white" />
         </p>
       </div>

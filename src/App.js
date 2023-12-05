@@ -85,13 +85,15 @@ function App () {
     <div className="d-flex flex-column min-vh-100">
       <Container className="mt-5 flex-grow-1">
         <div className="app-header text-center">
-          <img
-            src={head_image}
-            className="img-fluid"
-            alt="logo"
-            height={50}
-            width={70}
-          />
+          <a href="App.js">
+            <img
+              src={head_image}
+              className="img-fluid"
+              alt="logo"
+              height={50}
+              width={70}
+            />
+          </a>
           <h1 className="mb-4 head-title">
             Weather App{' '}
             {weatherData &&
