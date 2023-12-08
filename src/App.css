@@ -11,7 +11,7 @@
 
 .head-title {
   font-family: 'Montserrat', sans-serif;
-  color: rgb(2, 26, 73);
+  color: #021a49;
   font-size: 44px;
   font-weight: 800;
   text-align: center;
@@ -31,7 +31,7 @@
 }
 
 .footer-link {
-  color: #fff;
+  color: #ffffff;
   text-decoration: underline;
   padding: 0px 5px;
 }
@@ -93,8 +93,8 @@
 .weather-info {
   padding: 15px;
   border-radius: 8px;
-  color: rgb(5, 28, 74);
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.422);
+  color: #051c4a;
+  box-shadow: 0px 0px 15px #0000006c;
   max-width: 500px;
   min-height: 200px;
   margin: auto;
