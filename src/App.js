@@ -54,6 +54,13 @@ function App () {
       lightning: '⚡',
       humid: '💦',
       hurricane: '🌀',
+      mist: '🌫️',
+      sandstorm: '🌪️🏜️',
+      drizzle: '🌦️',
+      sleet: '🌨️❄️',
+      rainbow: '🌈',
+      snowflake: '❄️',
+      sunny: '☀️',
     };
 
     const lowerCaseDescription = description.toLowerCase ();
@@ -70,8 +77,8 @@ function App () {
   useEffect (
     () => {
       if (weatherData) {
-        // Update the document title whenever weatherData changes
-        document.title = `Weather in ${weatherData.name}, ${weatherData.sys.country}`;
+        const cityEmoji = getWeatherEmoji (weatherData.weather[0].description);
+        document.title = `Weather in ${weatherData.name} ${cityEmoji}`;
       }
     },
     [weatherData]
@@ -118,7 +125,7 @@ function App () {
             placeholder="Enter city"
             value={city}
             onChange={e => setCity (e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyPressCapture={handleKeyPress}
           />
           <button className="btn btn-success" onClick={fetchWeatherData}>
             Get Weather

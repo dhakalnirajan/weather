@@ -1,7 +1,7 @@
 {
   "name": "weather",
-  "version": "0.1.1",
-  "private": true,
+  "version": "0.1.2",
+  "private": false,
   "homepage": "https://dhakalnirajan.github.io/weather",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
