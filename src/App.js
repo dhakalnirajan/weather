@@ -100,12 +100,12 @@ function App () {
               height={50}
               width={70}
             />
+            <h1 className="mb-4 head-title" style="font-size: 55px;">
+              Weather App{' '}
+              {weatherData &&
+                getWeatherEmoji (weatherData.weather[0].description)}
+            </h1>
           </a>
-          <h1 className="mb-4 head-title">
-            Weather App{' '}
-            {weatherData &&
-              getWeatherEmoji (weatherData.weather[0].description)}
-          </h1>
         </div>
         <div className="app-description">
           <p className="lead">
@@ -127,7 +127,7 @@ function App () {
             onChange={e => setCity (e.target.value)}
             onKeyPressCapture={handleKeyPress}
           />
-          <button className="btn btn-success" onClick={fetchWeatherData}>
+          <button className="btn btn-warning" onClick={fetchWeatherData}>
             Get Weather
           </button>
         </div>
