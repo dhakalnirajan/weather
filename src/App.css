@@ -12,7 +12,7 @@
 .head-title {
   font-family: 'Montserrat', sans-serif;
   color: #021a49;
-  font-size: 44px;
+  font-size: 57px;
   font-weight: 800;
   text-align: center;
 }
@@ -31,9 +31,10 @@
 }
 
 .footer-link {
-  color: #ffffff;
+  color: #373737;
   text-decoration: underline;
   padding: 0px 5px;
+  font-weight: 800;
 }
 
 .app-header {
