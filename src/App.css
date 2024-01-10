@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .App {
   text-align: center;
@@ -43,6 +44,20 @@
   justify-content: space-between;
   color: white;
   padding: 20px 0px 0px 0px;
+}
+
+.input-text {
+  font-size: 23px;
+}
+
+.bg-weather-info {
+  background-color: #524ff9;
+  filter: drop-shadow(1px 100px 81px #42424245);
+}
+
+.btn-text {
+  font-size: 21px;
+  font-weight: 600;
 }
 
 .lead {
@@ -94,18 +109,18 @@
 .weather-info {
   padding: 15px;
   border-radius: 8px;
-  color: #051c4a;
+  color: #f4f4f4;
   box-shadow: 0px 0px 15px #0000006c;
   max-width: 500px;
   min-height: 200px;
   margin: auto;
   margin-top: 15px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .input-group {
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .custom-input {

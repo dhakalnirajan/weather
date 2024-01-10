@@ -121,19 +121,22 @@ function App () {
         <div className="input-group">
           <input
             type="text"
-            className="form-control"
+            className="form-control input-text"
             placeholder="Enter city"
             value={city}
             onChange={e => setCity (e.target.value)}
             onKeyPressCapture={handleKeyPress}
           />
-          <button className="btn btn-warning" onClick={fetchWeatherData}>
+          <button
+            className="btn btn-warning btn-text"
+            onClick={fetchWeatherData}
+          >
             Get Weather
           </button>
         </div>
 
         {weatherData &&
-          <div className="weather-info mt-5 p-3 bg-light border rounded">
+          <div className="weather-info bg-weather-info mt-5 p-3 border rounded">
             <h3 className="mb-3">
               Weather in {weatherData.name}, {weatherData.sys.country}
             </h3>
@@ -143,7 +146,13 @@ function App () {
             </p>
             <p className="mb-1">Humidity: {weatherData.main.humidity}%</p>
             <p className="mb-1">
-              Weather: {weatherData.weather[0].description}
+              Weather:
+              {' '}
+              {weatherData.weather[0].description}
+              {' '}
+              <span style={{marginLeft: '10px', fontSize: '18px'}}>
+                {getWeatherEmoji (weatherData.weather[0].description)}
+              </span>
             </p>
             <p className="mb-1">Wind Speed: {weatherData.wind.speed} m/s</p>
             <p className="mb-1">Pressure: {weatherData.main.pressure} hPa</p>
