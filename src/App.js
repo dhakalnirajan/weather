@@ -1,202 +1,108 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { 
+  SunFill, 
+  CloudFill, 
+  CloudRainFill, 
+  CloudSnowFill, 
+  CloudFogFill, 
+  Wind 
+} from 'react-bootstrap-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import {Container} from 'react-bootstrap';
-import Footer from './Footer';
-import head_image from './images/nav-logo.png';
 
-function App () {
-  const [city, setCity] = useState ('');
-  const [weatherData, setWeatherData] = useState (null);
+const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
+const API_URL = `https://api.openweathermap.org/data/2.5/weather`;
 
-  const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
-  const API_URL = `https://api.openweathermap.org/data/2.5/weather`;
+export default function WeatherApp() {
+  const [city, setCity] = useState('');
+  const [weatherData, setWeatherData] = useState(null);
 
   const fetchWeatherData = async () => {
     try {
-      const response = await axios.get (
-        `${API_URL}?q=${city}&appid=${API_KEY}`
-      );
-      setWeatherData (response.data);
-
-      // Set the document title dynamically
+      const response = await axios.get(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
+      setWeatherData(response.data);
       document.title = `Weather in ${response.data.name}, ${response.data.sys.country}`;
     } catch (error) {
-      console.error ('Error fetching weather data:', error);
+      console.error('Error fetching weather data:', error);
     }
   };
 
-  const handleKeyPress = e => {
+  const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      fetchWeatherData ();
+      fetchWeatherData();
     }
   };
 
-  const getWeatherEmoji = description => {
-    const weatherEmojiMap = {
-      clear: '☀️',
-      cloud: '☁️',
-      rain: '🌧️',
-      thunderstorm: '⛈️',
-      snow: '❄️',
-      haze: '🌫️',
-      hailstorm: '⚡❄️',
-      cloudy: '☁️☁️',
-      wave: '🌊',
-      tornado: '🌪️',
-      windy: '💨',
-      storm: '🌩️',
-      tsunami: '🌊🌪️',
-      frost: '❄️🌬️',
-      fog: '🌫️',
-      thunder: '⚡',
-      lightning: '⚡',
-      humid: '💦',
-      hurricane: '🌀',
-      mist: '🌫️',
-      sandstorm: '🌪️🏜️',
-      drizzle: '🌦️',
-      sleet: '🌨️❄️',
-      rainbow: '🌈',
-      snowflake: '❄️',
-      sunny: '☀️',
-    };
-
-    const lowerCaseDescription = description.toLowerCase ();
-
-    for (const key in weatherEmojiMap) {
-      if (lowerCaseDescription.includes (key)) {
-        return weatherEmojiMap[key];
-      }
-    }
-
-    return '❓'; // Default emoji for unknown weather
+  const getWeatherIcon = (description) => {
+    const lowerCaseDescription = description.toLowerCase();
+    if (lowerCaseDescription.includes('clear')) return <SunFill className="weather-icon text-warning" />;
+    if (lowerCaseDescription.includes('cloud')) return <CloudFill className="weather-icon text-secondary" />;
+    if (lowerCaseDescription.includes('rain')) return <CloudRainFill className="weather-icon text-info" />;
+    if (lowerCaseDescription.includes('snow')) return <CloudSnowFill className="weather-icon text-light" />;
+    if (lowerCaseDescription.includes('fog') || lowerCaseDescription.includes('mist')) return <CloudFogFill className="weather-icon text-secondary" />;
+    return <Wind className="weather-icon text-secondary" />;
   };
 
-  useEffect (
-    () => {
-      if (weatherData) {
-        const cityEmoji = getWeatherEmoji (weatherData.weather[0].description);
-        document.title = `Weather in ${weatherData.name} ${cityEmoji}`;
-      }
-    },
-    [weatherData]
-  );
-
-  const kelvinToCelsius = kelvin => {
-    return kelvin - 273.15;
+  const formatDate = () => {
+    const date = new Date();
+    return date.toLocaleDateString('en-US', { weekday: 'short', month: '2-digit', day: '2-digit' });
   };
 
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <Container className="mt-5 flex-grow-1">
-        <div className="app-header text-center">
-          <a href="https://dhakalnirajan.github.io/weather/">
-            <img
-              src={head_image}
-              className="img-fluid"
-              alt="logo"
-              height={50}
-              width={70}
+    <Container className="mt-5">
+      <h1 className="text-center mb-4">Weather App</h1>
+      <Row className="justify-content-center mb-4">
+        <Col md={6}>
+          <Form.Group className="d-flex">
+            <Form.Control
+              type="text"
+              placeholder="Enter city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
-          </a>
-          <h1 className="mb-4 head-title">
-            Weather App{' '}
-            {weatherData &&
-              getWeatherEmoji (weatherData.weather[0].description)}
-          </h1>
-        </div>
-        <div className="app-description">
-          <p className="lead">
-            Welcome to the Weather App! Get real-time weather information and a
-            30-day climate forecast for any city.
-          </p>
+            <Button variant="primary" onClick={fetchWeatherData} className="ms-2">
+              Get Weather
+            </Button>
+          </Form.Group>
+        </Col>
+      </Row>
 
-          <p className="instruction">
-            Enter the name of the city you want to know the weather for and click
-            "Get Weather."
-          </p>
-        </div>
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control input-text"
-            placeholder="Enter city"
-            value={city}
-            onChange={e => setCity (e.target.value)}
-            onKeyPressCapture={handleKeyPress}
-          />
-          <button
-            className="btn btn-warning btn-text"
-            onClick={fetchWeatherData}
-          >
-            Get Weather
-          </button>
-        </div>
-
-        {weatherData &&
-          <div className="weather-info bg-weather-info mt-5 p-3 border rounded">
-            <h3 className="mb-3">
+      {weatherData && (
+        <Card className="weather-card">
+          <Card.Header>
+            <h2 className="text-center">
               Weather in {weatherData.name}, {weatherData.sys.country}
-            </h3>
-            <p className="mb-1">
-              Temperature:{' '}
-              {kelvinToCelsius (weatherData.main.temp).toFixed (2)} °C
-            </p>
-            <p className="mb-1">Humidity: {weatherData.main.humidity}%</p>
-            <p className="mb-1">
-              Weather:
-              {' '}
-              {weatherData.weather[0].description}
-              {' '}
-              <span style={{marginLeft: '10px', fontSize: '18px'}}>
-                {getWeatherEmoji (weatherData.weather[0].description)}
-              </span>
-            </p>
-            <p className="mb-1">Wind Speed: {weatherData.wind.speed} m/s</p>
-            <p className="mb-1">Pressure: {weatherData.main.pressure} hPa</p>
-            <p className="mb-0">Visibility: {weatherData.visibility} meters</p>
-          </div>}
-
-        {
-          <div className="container mt-5 p-3">
-            <div className="content">
-              <h2 className="mb-3">Explore Weather Information</h2>
-              <p className="lead-2">
-                Stay informed about the weather conditions of any city by using our
-                Weather App. Enter the name of the city you want to know the weather
-                for and click "Get Weather."
-              </p>
-              <p className="lead-2">
-                The app provides real-time weather information, including temperature,
-                humidity, wind speed, pressure, and visibility. Additionally, you can
-                enjoy a 30-day climate forecast for your chosen location.
-              </p>
-              <p className="lead-2">
-                The weather information is dynamically updated, and the emoji on the
-                title represents the current weather state. The app also changes the
-                browser tab title to the name of the city you are exploring.
-              </p>
-              <p className="lead-2">
-                Explore different cities, and watch how the content changes to
-                accommodate the weather details. Try it now and stay ahead of the
-                weather!
-              </p>
-              <p className="lead-2 mt-4 mb-5">
-                <strong>Note:</strong>
-                {' '}
-                The weather emoji in the title represents the
-                current weather state, providing a quick visual indication.
-              </p>
+            </h2>
+            <div className="d-flex justify-content-between align-items-center">
+              {getWeatherIcon(weatherData.weather[0].description)}
+              <span className="weather-description">{weatherData.weather[0].description}</span>
+              <span>{formatDate()}</span>
             </div>
-          </div>
-        }
-
-      </Container>
-      <Footer />
-    </div>
+          </Card.Header>
+          <Card.Body>
+            <Row className="text-center">
+              <Col xs={4}>
+                <img src="/temperature-icon.png" alt="Temperature" className="weather-info-icon" />
+                <p className="weather-info-label">Temperature</p>
+                <p className="weather-info-value">{weatherData.main.temp.toFixed(1)}°C</p>
+              </Col>
+              <Col xs={4}>
+                <img src="/humidity-icon.png" alt="Humidity" className="weather-info-icon" />
+                <p className="weather-info-label">Humidity</p>
+                <p className="weather-info-value">{weatherData.main.humidity}%</p>
+              </Col>
+              <Col xs={4}>
+                <img src="/wind-icon.png" alt="Wind Speed" className="weather-info-icon" />
+                <p className="weather-info-label">Wind Speed</p>
+                <p className="weather-info-value">{(weatherData.wind.speed * 3.6).toFixed(1)} km/hr</p>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
+      )}
+    </Container>
   );
 }
-
-export default App;
