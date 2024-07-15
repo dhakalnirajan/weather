@@ -106,3 +106,5 @@ export default function WeatherApp() {
     </Container>
   );
 }
+
+export default App;
