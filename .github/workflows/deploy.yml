@@ -1,35 +1,30 @@
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4  # Updated to v4
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"  # Updated to match your React 18 version
-          cache: 'npm'
+          node-version: "18"
 
       - name: Install Dependencies
-        run: npm ci  # More reliable than npm install for CI
+        run: npm install
 
-      - name: Build Application
+      - name: Build and Deploy
         run: |
-          npm run build
+          REACT_APP_OPENWEATHER_API_KEY=${{ secrets.REACT_APP_OPENWEATHER_API_KEY }} npm run build
+          npm install -g gh-pages
+          gh-pages -d build
         env:
           REACT_APP_OPENWEATHER_API_KEY: ${{ secrets.REACT_APP_OPENWEATHER_API_KEY }}
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3  # More reliable deployment method
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          enable_jekyll: false  # Important for React apps
