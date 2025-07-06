@@ -1,290 +1,154 @@
-/* Base Styles */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #333;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.App {
+  text-align: center;
 }
 
-.app-container {
-  min-height: 100vh;
-  padding: 20px 0;
-  transition: background 0.5s ease;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-/* Search Container */
-.search-container {
-  display: flex;
-  gap: 10px;
+.head-title {
+  font-family: 'Montserrat', sans-serif;
+  color: #021a49;
+  font-size: 57px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.container {
+  /* CSS properties here */
   max-width: 600px;
   margin: 0 auto;
 }
 
-.search-container input {
-  flex: 1;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
+.footer-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  word-spacing: 1px;
+  font-weight: 600;
 }
 
-.search-container button {
-  padding: 12px 20px;
-  background-color: #4a6bdf;
+.footer-link {
+  color: #373737;
+  text-decoration: underline;
+  padding: 0px 5px;
+  font-weight: 800;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
+  padding: 20px 0px 0px 0px;
 }
 
-.search-container button:hover {
-  background-color: #3a5bd9;
+.input-text {
+  font-size: 23px;
 }
 
-/* Current Weather Header */
-.current-weather-header {
-  text-align: center;
-  margin-bottom: 30px;
+.bg-weather-info {
+  background-color: #524ff9;
+  filter: drop-shadow(1px 100px 81px #42424245);
 }
 
-.current-weather-header h2 {
+.btn-text {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.lead {
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.lead-2 {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  text-align: justify;
+}
+
+
+.instruction {
+  margin-top: 20px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+
+.app-description {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 0px 20px 5px 5px;
+  max-width: 1000px;
+}
+
+.app-description p {
+  font-size: 22px;
   margin-bottom: 10px;
-  color: #2c3e50;
+  font-family: 'Montserrat', sans-serif;
+  text-align: justify;
 }
 
-.current-weather-main {
+
+.app-logo {
+  height: 50px;
+  margin-left: 20px;
+}
+
+.content {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.weather-info {
+  padding: 15px;
+  border-radius: 8px;
+  color: #f4f4f4;
+  box-shadow: 0px 0px 15px #0000006c;
+  max-width: 500px;
+  min-height: 200px;
+  margin: auto;
+  margin-top: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-group {
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.custom-input {
+  height: 50px;
+  width: 900px;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.weather-icon-large {
-  font-size: 80px;
-  margin: 10px 0;
-  color: #4a6bdf;
+.App-link {
+  color: #61dafb;
 }
 
-.weather-temp {
-  font-size: 48px;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-.weather-desc {
-  font-size: 20px;
-  color: #666;
-  text-transform: capitalize;
-}
-
-/* Weather Grid */
-.weather-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.weather-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.weather-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.card-icon {
-  font-size: 30px;
-  color: #4a6bdf;
-  margin-bottom: 10px;
-}
-
-.card-value {
-  font-size: 28px;
-  font-weight: bold;
-  margin: 5px 0;
-}
-
-.card-label {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.card-extra {
-  font-size: 12px;
-  color: #888;
-}
-
-/* Progress Bars */
-.humidity-bar,
-.uv-bar,
-.precipitation-bar {
-  height: 8px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  margin: 10px 0;
-  overflow: hidden;
-}
-
-.humidity-fill {
-  height: 100%;
-  background: linear-gradient(to right, #64b5f6, #1976d2);
-  border-radius: 4px;
-}
-
-.uv-fill {
-  height: 100%;
-  border-radius: 4px;
-}
-
-.precipitation-fill {
-  height: 100%;
-  background: linear-gradient(to right, #90caf9, #2196f3);
-  border-radius: 4px;
-}
-
-/* Wind Direction */
-.wind-direction {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 5px;
-}
-
-/* Air Quality */
-.air-quality-level {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.air-quality-color {
-  width: 100%;
-  height: 6px;
-  border-radius: 3px;
-  margin-top: 5px;
-}
-
-/* Sun Timeline */
-.timeline-card {
-  grid-column: span 2;
-}
-
-.sun-timeline {
-  margin: 15px 0;
-}
-
-.timeline-bar {
-  height: 8px;
-  background: linear-gradient(to right, #FFD700, #4682B4);
-  border-radius: 4px;
-  position: relative;
-  margin: 15px 0;
-}
-
-.timeline-progress {
-  height: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-}
-
-.timeline-now {
-  position: absolute;
-  top: -4px;
-  width: 4px;
-  height: 16px;
-  background: #333;
-  transform: translateX(-50%);
-}
-
-.timeline-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
-}
-
-.timeline-label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 14px;
-}
-
-.sun-times {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.sun-time {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* UV Level */
-.uv-level {
-  font-size: 14px;
-  margin-top: 5px;
-  font-weight: 500;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .weather-grid {
-    grid-template-columns: 1fr 1fr;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .timeline-card {
-    grid-column: span 2;
+
+  to {
+    transform: rotate(360deg);
   }
 }
-
-@media (max-width: 480px) {
-  .weather-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .timeline-card {
-    grid-column: span 1;
-  }
-  
-  .current-weather-header h2 {
-    font-size: 24px;
-  }
-  
-  .weather-temp {
-    font-size: 36px;
-  }
-  
-  .card-value {
-    font-size: 24px;
-  }
-}
-
-/* Animation for weather cards */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.weather-card {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-/* Delay animations for grid items */
-.weather-card:nth-child(1) { animation-delay: 0.1s; }
-.weather-card:nth-child(2) { animation-delay: 0.2s; }
-.weather-card:nth-child(3) { animation-delay: 0.3s; }
-.weather-card:nth-child(4) { animation-delay: 0.4s; }
-.weather-card:nth-child(5) { animation-delay: 0.5s; }
-.weather-card:nth-child(6) { animation-delay: 0.6s; }
-.weather-card:nth-child(7) { animation-delay: 0.7s; }
-.weather-card:nth-child(8) { animation-delay: 0.8s; }
